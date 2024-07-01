@@ -1,5 +1,6 @@
 import 'dart:typed_data'; 
 
+import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,6 +20,11 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
   final VendorController _vendorController = VendorController();
 
   Uint8List? _image;
+
+  late String cityValue;
+  late String stateValue;
+  late String countryValue;
+
 
   selectGalleryImage() async {
     Uint8List im = await _vendorController.pickStoreImage(ImageSource.gallery);
@@ -54,21 +60,39 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
               );
             }),
           ),
-        const  SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Column(
               children: [
-                SizedBox(height: 20),
-                 InputText(
+               20.height,
+                 const InputText(
                   keyboardType: TextInputType.text,
                   text: "Business Name",
                 ),
-                 InputText(
+                 const InputText(
                   keyboardType: TextInputType.text,
                   text: "Email Address",
                 ),
-                 InputText(
+                 const InputText(
                   keyboardType: TextInputType.phone,
                   text: "Phone Number",
+                ),
+                SelectState(
+                  onCountryChanged: (value) {
+                    setState(() {
+                      countryValue = value;
+                    });
+                  },
+                  onStateChanged:(value) {
+                    setState(() {
+                      stateValue = value;
+                    });
+                  },
+                  onCityChanged:(value) {
+                    setState(() {
+                      cityValue = value;
+                    });
+                  },
+
                 ),
               ],
             ),
