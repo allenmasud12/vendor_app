@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vendor_app/const.dart';
+
+import '../../../widget/input_text.dart';
 
 class VendorRegistrationScreen extends StatelessWidget {
   const VendorRegistrationScreen({super.key});
@@ -31,6 +34,26 @@ class VendorRegistrationScreen extends StatelessWidget {
                 )
               );
             }),
+          ),
+           SliverToBoxAdapter(
+            child: Column(
+              children: [
+                20.height,
+                const InputText(
+                  keyboardType: TextInputType.text,
+                  text: "Business Name",
+                ),
+                const InputText(
+                  keyboardType: TextInputType.text,
+                  text: "Email Address",
+                ),
+                const InputText(
+                  keyboardType: TextInputType.phone,
+                  text: "Phone Number",
+                ),
+
+              ],
+            ),
           )
         ],
       ),
