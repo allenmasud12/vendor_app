@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:country_state_city_picker/country_state_city_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vendor_app/const.dart';
 import 'package:vendor_app/vendor/controller/vendor_controller.dart';
@@ -98,6 +99,28 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
             ),
           ),
         ],
+      ),
+
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: (){
+
+          },
+          child: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            decoration:  BoxDecoration(color: Colors.pink,
+            borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Center(child: Text('Save',style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              letterSpacing: 4
+            ),),),
+          ),
+        ),
       ),
     );
   }
