@@ -1,15 +1,50 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 
 class VendorController {
-  pickStoreImage(ImageSource source)async{
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  pickStoreImage(ImageSource source) async {
     final ImagePicker _pickImage = ImagePicker();
-   XFile? _file = await _pickImage.pickImage(source: source);
+    XFile? _file = await _pickImage.pickImage(source: source);
 
-   if(_file!=null){
-     return await _file.readAsBytes();
-   }else{
-     print("NO image Selected");
-   }
+    if (_file != null) {
+      return await _file.readAsBytes();
+    } else {
+      print("NO image Selected");
+    }
+  }
 
+  Future<String>vendorRegistrationForm(
+    String businessName,
+    String emailAddress,
+    String phoneNumber,
+    String countryValue,
+    String stateValue,
+    String cityValue,
+  ) async {
+    String res = "Something Went wrong";
+
+    try {
+      await _firestore
+          .collection("vendors")
+          .doc(_auth.currentUser!.uid)
+          .set({
+        'businessName': businessName,
+        'emailAddress': emailAddress,
+        'phoneNumber': phoneNumber,
+        'CountryValue': countryValue,
+        'stateValue': stateValue,
+        'cityValue': countryValue,
+        'vendorId': _auth.currentUser!.uid,
+        'approved': false,
+      });
+      res ="Success";
+    } catch (e) {
+      res = e.toString();
+    }
+    return res;
   }
 }

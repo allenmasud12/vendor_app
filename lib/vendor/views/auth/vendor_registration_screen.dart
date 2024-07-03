@@ -11,7 +11,8 @@ class VendorRegistrationScreen extends StatefulWidget {
   const VendorRegistrationScreen({super.key});
 
   @override
-  State<VendorRegistrationScreen> createState() => _VendorRegistrationScreenState();
+  State<VendorRegistrationScreen> createState() =>
+      _VendorRegistrationScreenState();
 }
 
 class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
@@ -52,11 +53,11 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                     child: _image != null
                         ? Image.memory(_image!)
                         : IconButton(
-                      onPressed: () {
-                        selectGalleryImage();
-                      },
-                      icon: const Icon(CupertinoIcons.photo),
-                    ),
+                            onPressed: () {
+                              selectGalleryImage();
+                            },
+                            icon: const Icon(CupertinoIcons.photo),
+                          ),
                   ),
                 ),
               );
@@ -113,17 +114,18 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
           onTap: () {
-            if(_globalKey.currentState!.validate()){
-              print(_nameController.text);
-              print(_emailController.text);
-              print(_phoneController.text);
-              print(countryValue);
-              print(stateValue);
-              print(cityValue);
-            }else{
+            if (_globalKey.currentState!.validate()) {
+              _vendorController.vendorRegistrationForm(
+                _nameController.text,
+                _emailController.text,
+                _phoneController.text,
+                countryValue,
+                stateValue,
+                cityValue,
+              );
+            } else {
               print("wronggg");
             }
-
           },
           child: Container(
             height: 50,
