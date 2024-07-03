@@ -122,6 +122,7 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
                 countryValue,
                 stateValue,
                 cityValue,
+                _image,
               );
             } else {
               print("wronggg");
