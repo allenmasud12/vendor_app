@@ -4,11 +4,16 @@ import 'package:vendor_app/const.dart';
 class InputText extends StatelessWidget {
   final String text;
   final TextInputType keyboardType;
+  final TextEditingController controller;
+  final String? emptyText ;
+
 
   const InputText({
     super.key,
     required this.text,
     this.keyboardType = TextInputType.text,
+    required this.controller,
+    this.emptyText,
   });
 
   @override
@@ -18,6 +23,14 @@ class InputText extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextFormField(
+            validator: (value) {
+              if (value!.isEmpty) {
+                return emptyText;
+              } else {
+                return null;
+              }
+            },
+            controller: controller,
             keyboardType: keyboardType,
             decoration: InputDecoration(
               labelText: text,
