@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:vendor_app/vendor/views/auth/vendor_auth_screen.dart';
+
+import 'vendor/screen/landing_screen.dart';
 
 
 void main() async{
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  VendorAuthScreen(),
+      home: const LandingScreen(),
       builder: EasyLoading.init(),
     );
   }
