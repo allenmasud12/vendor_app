@@ -1,23 +1,23 @@
 class VendorUserModel {
-  String businessName;
-  String emailAddress;
-  String phoneNumber;
-  String countryValue;
-  String stateValue;
-  String cityValue;
-  String storeImage;
-  String vendorId;
+  String? businessName;
+  String? emailAddress;
+  String? phoneNumber;
+  String? countryValue;
+  String? stateValue;
+  String? cityValue;
+  String? storeImage;
+  String? vendorId;
   bool? approved;
 
   VendorUserModel({
-    required this.businessName,
-    required this.emailAddress,
-    required this.phoneNumber,
-    required this.countryValue,
-    required this.stateValue,
-    required this.cityValue,
-    required this.storeImage,
-    required this.vendorId,
+    this.businessName,
+    this.emailAddress,
+    this.phoneNumber,
+    this.countryValue,
+    this.stateValue,
+    this.cityValue,
+    this.storeImage,
+    this.vendorId,
     this.approved,
   });
 
@@ -37,16 +37,20 @@ class VendorUserModel {
 
   factory VendorUserModel.fromJson(Map<String, dynamic> json) {
     return VendorUserModel(
-      businessName: json['businessName'],
-      emailAddress: json['emailAddress'],
-      phoneNumber: json['phoneNumber'],
-      countryValue: json['countryValue'],
-      stateValue: json['stateValue'],
-      cityValue: json['cityValue'],
-      storeImage: json['storeImage'],
-      vendorId: json['vendorId'],
-      approved: json['approved'],
+      businessName: json['businessName'] as String?,
+      emailAddress: json['emailAddress'] as String?,
+      phoneNumber: json['phoneNumber'] as String?,
+      countryValue: json['countryValue'] as String?,
+      stateValue: json['stateValue'] as String?,
+      cityValue: json['cityValue'] as String?,
+      storeImage: json['storeImage'] as String?,
+      vendorId: json['vendorId'] as String?,
+      approved: json['approved'] as bool?,
     );
   }
 
+  @override
+  String toString() {
+    return 'VendorUserModel{businessName: $businessName, emailAddress: $emailAddress, phoneNumber: $phoneNumber, countryValue: $countryValue, stateValue: $stateValue, cityValue: $cityValue, storeImage: $storeImage, vendorId: $vendorId, approved: $approved}';
+  }
 }
