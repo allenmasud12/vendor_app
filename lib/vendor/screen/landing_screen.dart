@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vendor_app/const.dart';
 import 'package:vendor_app/models/vendor_model.dart';
+import 'package:vendor_app/vendor/screen/vendor_map_screen.dart';
+import 'package:vendor_app/vendor/views/auth/vendor_registration_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -22,8 +24,17 @@ class LandingScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
         }
+
+        if(!snapshot.data!.exists){
+          return VendorRegistrationScreen();
+        }
+
         VendorUserModel vendorUserModel = VendorUserModel.fromJson(
             snapshot.data!.data() as Map<String, dynamic>);
+
+        if(vendorUserModel.approved== true){
+          return VendorMapScreen();
+        }
         return Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
