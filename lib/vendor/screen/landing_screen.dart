@@ -11,29 +11,29 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CollectionReference _vendorStream =
+    final CollectionReference vendorStream =
         FirebaseFirestore.instance.collection("vendors");
     return StreamBuilder<DocumentSnapshot>(
-      stream: _vendorStream.doc(_auth.currentUser!.uid).snapshots(),
+      stream: vendorStream.doc(_auth.currentUser?.uid).snapshots(),
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text('Something went wrong');
+          return const Text('Something went wrong');
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return const Text("Loading");
         }
 
         if(!snapshot.data!.exists){
-          return VendorRegistrationScreen();
+          return const VendorRegistrationScreen();
         }
 
         VendorUserModel vendorUserModel = VendorUserModel.fromJson(
             snapshot.data!.data() as Map<String, dynamic>);
 
         if(vendorUserModel.approved== true){
-          return VendorMapScreen();
+          return const VendorMapScreen();
         }
         return Center(
             child: Column(
@@ -49,14 +49,14 @@ class LandingScreen extends StatelessWidget {
             15.height,
             Text(
               vendorUserModel.businessName!,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
 
             ),
             15.height,
-            Text("Your Application, has been send to shop admin will get back you soon",
+            const Text("Your Application, has been send to shop admin will get back you soon",
             textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
@@ -66,7 +66,7 @@ class LandingScreen extends StatelessWidget {
             15.height,
             TextButton(onPressed: ()async{
               await _auth.signOut();
-            }, child: Text("Sign Out"))
+            }, child: const Text("Sign Out"))
           ],
         ));
       },
